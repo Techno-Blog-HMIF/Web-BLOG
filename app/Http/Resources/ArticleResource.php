@@ -18,7 +18,8 @@ class ArticleResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
-            'author' => $this->writer
+            'author' => $this->writer,
+            'clap_count' => $this->claps->sum('clap_count'),
         ];
     }
 }
