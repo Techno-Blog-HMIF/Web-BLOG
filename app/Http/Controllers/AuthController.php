@@ -12,12 +12,21 @@ use Tymon\JWTAuth\Contracts\Providers\JWT;
 
 class AuthController extends Controller
 {
-    public function profile(Request $request){
+    public function profile(){
         $user = JWTAuth::parseToken()->authenticate();
         return response()->json([
             'success' => true,
             'message' => 'User Profile',
             'data'    => new ShowUserResource($user),
+        ], 200);
+    }
+
+    public function showProfile($id){
+        $user = User::where('id', $id)->withCount('follower')->withCount('followed')->first();
+        return response()->json([
+            'success' => true,
+            'message' => 'User Profile',
+            'data'    => $user
         ], 200);
     }
 

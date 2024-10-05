@@ -78,4 +78,25 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Article::class, 'user_id', 'id');
     }
+
+    /**
+     * Get the claps for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+
+    public function claps()
+    {
+        return $this->hasMany(Clap::class);
+    }
+
+    public function follower()
+    {
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
+
+    public function followed()
+    {
+        return $this->hasMany(Follow::class, 'followed_id');
+    }
 }

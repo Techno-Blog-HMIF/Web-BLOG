@@ -39,4 +39,15 @@ class Article extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    /**
+     * Get the Clap that owns the Article
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+
+    public function claps()
+    {
+        return $this->hasMany(Clap::class);
+    }
+
 }
